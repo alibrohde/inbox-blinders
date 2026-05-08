@@ -1,11 +1,8 @@
-<div align="center">
-  <img src="icons/icon128.png" alt="Inbox Blinders icon" width="96" height="96"/>
-  <h1>Inbox Blinders</h1>
-  <p><em>Hide your inbox so you can compose email without getting distracted by everything else sitting there.</em></p>
-  <p>A Chrome extension for Gmail and Superhuman. Think of it as <a href="https://west.io/news-feed-eradicator/">News Feed Eradicator</a>, but for email.</p>
-</div>
+# Inbox Blinders
 
----
+A Chrome extension that hides your inbox so you can compose email without getting distracted by everything else sitting there.
+
+Think of it as [News Feed Eradicator](https://west.io/news-feed-eradicator/), but for email. Supports Gmail and Superhuman.
 
 ## What it does
 
