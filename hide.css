@@ -23,8 +23,12 @@ body.blinders-on[data-gmail-view="inbox"] .AO::before {
 
 /* ---------- Superhuman ---------- */
 
-/* Hide thread list rows only when on the Inbox folder. */
-body.blinders-on[data-sh-folder="inbox"] .ThreadListItem {
+/* Hide thread list rows, date separators, and folder unread counts when on
+   the Inbox folder. The counts in the top folder tabs are just as tempting
+   as the rows themselves, so hide all of them while blinders are on. */
+body.blinders-on[data-sh-folder="inbox"] .ThreadListItem,
+body.blinders-on[data-sh-folder="inbox"] .ThreadListSeparator,
+body.blinders-on[data-sh-folder="inbox"] .Folder-count {
   display: none !important;
 }
 
