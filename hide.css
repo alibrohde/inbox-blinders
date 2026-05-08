@@ -1,0 +1,20 @@
+/* Hide thread list rows only on the Inbox view. */
+body.blinders-on[data-gmail-view="inbox"] tr.zA {
+  display: none !important;
+}
+
+/* Hide the unread count next to "Inbox" in the left sidebar so the number doesn't tempt. */
+body.blinders-on .aim a[href$="#inbox"] .bsU,
+body.blinders-on .aim .nU.n1 .bsU {
+  visibility: hidden !important;
+}
+
+/* Friendly placeholder where the message list used to be, on the Inbox view. */
+body.blinders-on[data-gmail-view="inbox"] .AO::before {
+  content: "Blinders on. Click the extension icon (or ⌘⇧B) to peek.";
+  display: block;
+  padding: 48px 24px;
+  text-align: center;
+  color: #5f6368;
+  font: 400 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
