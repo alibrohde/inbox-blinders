@@ -1,13 +1,20 @@
 const STORAGE_KEY = 'blindersEnabled';
+const HOST = location.hostname;
 
 function applyState(enabled) {
   document.body.classList.toggle('blinders-on', enabled);
 }
 
-function detectView() {
+function detectGmailView() {
   const hash = location.hash || '#inbox';
   const view = hash.match(/^#([^/?]+)/)?.[1] ?? 'inbox';
   document.body.dataset.gmailView = view;
+}
+
+function detectSuperhumanFolder() {
+  const title = document.title || '';
+  const folder = title.split(' • ')[0]?.toLowerCase().trim() || '';
+  document.body.dataset.shFolder = folder;
 }
 
 async function init() {
@@ -18,11 +25,22 @@ async function init() {
   }
 
   const stored = await chrome.storage.local.get(STORAGE_KEY);
-  const enabled = stored[STORAGE_KEY] ?? true;
-  applyState(enabled);
-  detectView();
+  applyState(stored[STORAGE_KEY] ?? true);
 
-  window.addEventListener('hashchange', detectView);
+  if (HOST === 'mail.google.com') {
+    detectGmailView();
+    window.addEventListener('hashchange', detectGmailView);
+  } else if (HOST === 'mail.superhuman.com') {
+    detectSuperhumanFolder();
+    const titleEl = document.querySelector('title');
+    if (titleEl) {
+      new MutationObserver(detectSuperhumanFolder).observe(titleEl, {
+        childList: true,
+        characterData: true,
+        subtree: true,
+      });
+    }
+  }
 
   chrome.runtime.onMessage.addListener((msg) => {
     if (msg?.type === 'TOGGLE') applyState(msg.enabled);

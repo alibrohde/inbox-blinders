@@ -2,13 +2,13 @@
 
 A Chrome extension that hides your inbox so you can compose email without getting distracted by everything else sitting there.
 
-Think of it as [News Feed Eradicator](https://west.io/news-feed-eradicator/), but for Gmail.
+Think of it as [News Feed Eradicator](https://west.io/news-feed-eradicator/), but for email. Supports Gmail and Superhuman.
 
 ![Icon](icons/icon128.png)
 
 ## What it does
 
-When enabled (default), Inbox Blinders hides every email row on the Gmail inbox view. Compose, search, Sent, Drafts, and individual threads still work — only the inbox list is blanked out. The unread count next to "Inbox" in the sidebar is also hidden so the number doesn't pull you in.
+When enabled (default), Inbox Blinders hides every email row on the **Inbox** view of Gmail or Superhuman. Compose, search, Sent, Drafts, and individual threads still work — only the inbox list is blanked out. On Gmail, the unread count next to "Inbox" in the sidebar is also hidden so the number doesn't pull you in.
 
 Click the toolbar icon (or hit ⌘⇧B) to peek when you actually need to see email.
 
@@ -29,15 +29,25 @@ Click the toolbar icon (or hit ⌘⇧B) to peek when you actually need to see em
 
 ## Roadmap
 
-- [ ] Superhuman support
+- [x] Superhuman support
 - [ ] Optional thread allowlist (always show specific senders)
 - [ ] Per-label control (hide Inbox but show a chosen label)
 
 ## How it works
 
-A content script sets `body.blinders-on` and a `data-gmail-view` attribute based on the URL hash. CSS scoped to `body.blinders-on[data-gmail-view="inbox"]` hides Gmail's thread rows (`tr.zA`). The service worker handles the toolbar click and keyboard command, persists state in `chrome.storage.local`, and broadcasts toggles to every open Gmail tab.
+A content script sets `body.blinders-on` plus a per-host folder attribute:
 
-If Gmail's obfuscated CSS classes shift and rows stop hiding, inspect a row in DevTools, grab the new class, and update one line in `hide.css`.
+- **Gmail** → `data-gmail-view` (read from `location.hash`).
+- **Superhuman** → `data-sh-folder` (read from `document.title`, since Superhuman doesn't change the URL between folders; a `MutationObserver` keeps it in sync).
+
+CSS scoped to those attributes hides only the inbox list:
+
+- Gmail thread rows: `tr.zA`
+- Superhuman thread rows: `.ThreadListItem`
+
+The service worker handles the toolbar click and keyboard command, persists state in `chrome.storage.local`, and broadcasts toggles to every open mail tab.
+
+If a provider's class names shift and rows stop hiding, inspect a row in DevTools, grab the new class, and update one line in `hide.css`.
 
 ## License
 
