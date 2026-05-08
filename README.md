@@ -1,10 +1,11 @@
-# Inbox Blinders
+<div align="center">
+  <img src="icons/icon128.png" alt="Inbox Blinders icon" width="96" height="96"/>
+  <h1>Inbox Blinders</h1>
+  <p><em>Hide your inbox so you can compose email without getting distracted by everything else sitting there.</em></p>
+  <p>A Chrome extension for Gmail and Superhuman. Think of it as <a href="https://west.io/news-feed-eradicator/">News Feed Eradicator</a>, but for email.</p>
+</div>
 
-A Chrome extension that hides your inbox so you can compose email without getting distracted by everything else sitting there.
-
-Think of it as [News Feed Eradicator](https://west.io/news-feed-eradicator/), but for email. Supports Gmail and Superhuman.
-
-![Icon](icons/icon128.png)
+---
 
 ## What it does
 
@@ -26,12 +27,6 @@ Click the toolbar icon (or hit ⌘⇧B) to peek when you actually need to see em
 - **Toggle:** click the toolbar icon, or ⌘⇧B on Mac (Ctrl+Shift+B on Windows/Linux).
 - **Badge:** shows `ON` when blinders are active.
 - The toggle persists across reloads and across Gmail tabs.
-
-## Roadmap
-
-- [x] Superhuman support
-- [ ] Optional thread allowlist (always show specific senders)
-- [ ] Per-label control (hide Inbox but show a chosen label)
 
 ## How it works
 
