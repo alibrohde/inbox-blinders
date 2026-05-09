@@ -14,7 +14,9 @@ async function setEnabled(enabled) {
   await chrome.storage.local.set({ [STORAGE_KEY]: enabled });
   await syncBadge(enabled);
 
-  const tabs = await chrome.tabs.query({ url: 'https://mail.google.com/*' });
+  const tabs = await chrome.tabs.query({
+    url: ['https://mail.google.com/*', 'https://mail.superhuman.com/*'],
+  });
   for (const tab of tabs) {
     chrome.tabs.sendMessage(tab.id, { type: 'TOGGLE', enabled }).catch(() => {});
   }

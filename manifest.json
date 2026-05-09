@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Inbox Blinders",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Hide your inbox so you can compose without distraction. Click the toolbar icon (or use Cmd+Shift+B) to toggle. Supports Gmail and Superhuman.",
   "permissions": ["storage", "tabs"],
   "host_permissions": [
